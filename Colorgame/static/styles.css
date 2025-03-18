@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: white;
+    text-align: center;
+    padding: 50px;
+}
+.color-box {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    margin: 10px;
+    cursor: pointer;
+}
+#timer {
+    font-size: 2em;
+    margin: 20px 0;
+}
+#result {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+#log {
+    margin-top: 20px;
+    text-align: left;
+}
+#balance {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+.bet-amount-container {
+    display: none;
+    width: 220px;
+    height: 250px;
+    background-color: white;
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 60%; /* Adjusted to move slightly to the right */
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+.bet-amount-button {
+    margin: 5px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+.bet-amount-button:hover {
+    background-color: #45a049;
+}
+.bet-list {
+    margin-top: 20px;
+}
+.bet-list h3 {
+    margin-bottom: 10px;
+}
+.bet-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+.bet-list li {
+    margin-bottom: 5px;
+}
+#totalBetAmount {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+#adminBalance {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+

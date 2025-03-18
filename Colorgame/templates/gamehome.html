@@ -1,0 +1,73 @@
+<!-- filepath: c:\Users\sujee\OneDrive\Desktop\Development\game2\Colorgame\templates\gamehome.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <script src="/static/script.js"></script>
+    <title>Color Prediction Game</title>
+</head>
+<body>
+    <h1>Color Prediction Game</h1>
+    <h2>Welcome {{ username }}!</h2>
+    <!-- ...existing code... -->
+    <div id="balance"></div>
+    <div id="recharge">
+        <label for="rechargeAmount">Recharge Amount: </label>
+        <input type="number" id="rechargeAmount" placeholder="Enter amount">
+        <button onclick="rechargeBalance()">Recharge</button>
+    </div>
+    <div id="colors">
+        <div class="color-box" style="background-color: red;" data-color="red" onclick="selectColor('red')"></div>
+        <div class="color-box" style="background-color: green;" data-color="green" onclick="selectColor('green')"></div>
+    </div>
+    <div id="timer">30</div>
+    <div class="bet-amount-container" id="betAmountContainer">
+        <h3>Select Bet Amount</h3>
+        <button class="bet-amount-button" onclick="selectBetAmount(1)">1</button>
+        <button class="bet-amount-button" onclick="selectBetAmount(2)">2</button>
+        <button class="bet-amount-button" onclick="selectBetAmount(3)">3</button>
+        <button class="bet-amount-button" onclick="selectBetAmount(4)">4</button>
+        <button class="bet-amount-button" onclick="selectBetAmount(5)">5</button>
+        <button class="bet-amount-button" onclick="selectBetAmount(10)">10</button>
+        <button class="bet-amount-button" onclick="selectBetAmount(50)">50</button>
+        <button class="bet-amount-button" onclick="selectBetAmount(100)">100</button>
+        <p>Selected Bet Amount: <span id="selectedBetAmount">0</span></p>
+        <button class="bet-amount-button" onclick="confirmBetAmount()">Confirm</button>
+        <button class="bet-amount-button" onclick="goBack()">Go Back</button>
+    </div>
+    <div class="bet-list" id="betList">
+        <h3>Bets</h3>
+        <ul id="betListItems"></ul>
+    </div>
+    <div id="adminBalance">Admin Balance: $0</div>
+    <div id="totalBetAmount">Total Bet Amount: $0</div>
+    <button onclick="startGame()">Start Game</button>
+    <div id="result"></div>
+    <div id="log"></div>
+    
+    <a href="/logout">Logout</a>
+    <script>
+        var ws = new WebSocket('ws://' + window.location.host + '/ws/gamehome/');
+
+        ws.onmessage = function(e) {
+            var data = JSON.parse(e.data);
+            var message = data['message'];
+            // Update the UI with the received message
+            console.log(message);
+        };
+
+        ws.onclose = function(e) {
+            console.error('WebSocket closed unexpectedly');
+        };
+
+        function sendMessage(message) {
+            ws.send(JSON.stringify({
+                'message': message
+            }));
+        }
+    </script>
+</body>
+</html>
